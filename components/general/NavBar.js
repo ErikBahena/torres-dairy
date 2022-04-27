@@ -18,9 +18,13 @@ import MenuItem from "@mui/material/MenuItem";
 
 import Link from "next/link";
 import { GiCow } from "react-icons/gi";
-import Drawer from "../general/Drawer";
+import Drawer from "./Drawer";
 
-const pages = ["About The Farm", "Say Hello", "Faqs"];
+const pages = [
+  { title: "About The Farm", href: "about" },
+  { title: "Say Hello", href: "contact" },
+  { title: "Faqs", href: "faq" },
+];
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -100,13 +104,9 @@ export default function NavBar(props) {
 
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={toggleDrawer}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
+                <Link href={page.href}>
+                  <Typography variant="h5">{page.title}</Typography>
+                </Link>
               ))}
             </Box>
           </Toolbar>
